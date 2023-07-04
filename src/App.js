@@ -20,18 +20,22 @@ function App() {
     let reccuringSavingsOfUser = +currentSavings; // feel free to change the shape of this input object!
     const yearlyContribution = +yearlySavings; // as mentioned: feel free to change the shape...
     const interestRate = +expectedReturn / 100;
-    const duration = 12;
+    const duration = investmentDuration;
+    let totalInterest = 0;
 
     // The below code calculates yearly results (total savings, interest etc)
     for (let i = 0; i < duration; i++) {
       const yearlyInterest = +reccuringSavingsOfUser * interestRate;
       reccuringSavingsOfUser += yearlyInterest + yearlyContribution;
+      totalInterest += yearlyInterest;
       yearlyData.push({
         // feel free to change the shape of the data pushed to the array!
         year: i + 1,
         yearlyInterest: yearlyInterest,
-        savingsEndOfYear: reccuringSavingsOfUser,
+        totalSavings: reccuringSavingsOfUser,
+        totalInterest: totalInterest,
         yearlyContribution: yearlyContribution,
+        investedCapital: (i + 1) * +yearlyContribution + +currentSavings,
       });
     }
     setCalculationsTable(yearlyData);
@@ -131,17 +135,21 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {calculationsTable.map((val) => {
-            return (
-              <tr>
-                <td>{val.year}</td>
-                <td>{val.yearlyInterest}</td>
-                <td>{val.savingsEndOfYear}</td>
-                <td>{val.savingsEndOfYear}</td>
-                <td>{val.yearlyContribution}</td>
-              </tr>
-            );
-          })}
+          {calculationsTable.length > 0 ? (
+            calculationsTable.map((val) => {
+              return (
+                <tr>
+                  <td>{val.year}</td>
+                  <td>{val.totalSavings}</td>
+                  <td>{val.yearlyInterest}</td>
+                  <td>{val.totalInterest}</td>
+                  <td>{val.investedCapital}</td>
+                </tr>
+              );
+            })
+          ) : (
+            <div></div>
+          )}
         </tbody>
       </table>
     </div>
