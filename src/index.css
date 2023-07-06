@@ -10,7 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background-color: #242a28; */
-  background: radial-gradient(#303b37, #1a1f1d);
+  background: radial-gradient(#417864, #1a1f1d);
   color: #e1eeeb;
 }
 
@@ -36,7 +36,7 @@ body {
   max-width: 30rem;
   margin: 2rem auto;
   border-radius: 4px;
-  background: linear-gradient(180deg, #307e6c, #2b996d);
+  background: linear-gradient(180deg, #81a24c, #2b996d);
 }
 
 .input-group {
@@ -109,6 +109,11 @@ button:hover {
 .result thead {
   font-size: 0.7rem;
   color: #83e6c0;
+}
+
+.paragraph{
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
 }
 
 .result tbody {
