@@ -1,4 +1,10 @@
 import React from "react";
+const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "INR",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
 
 const Table = ({ calculationsTable }) => {
   return (
@@ -13,21 +19,17 @@ const Table = ({ calculationsTable }) => {
         </tr>
       </thead>
       <tbody>
-        {calculationsTable.length > 0 ? (
-          calculationsTable.map((val) => {
-            return (
-              <tr>
-                <td>{val.year}</td>
-                <td>{val.totalSavings}</td>
-                <td>{val.yearlyInterest}</td>
-                <td>{val.totalInterest}</td>
-                <td>{val.investedCapital}</td>
-              </tr>
-            );
-          })
-        ) : (
-          <div></div>
-        )}
+        {calculationsTable.map((val) => {
+          return (
+            <tr key={val.year}>
+              <td>{val.year}</td>
+              <td>{formatter.format(val.totalSavings)}</td>
+              <td>{formatter.format(val.yearlyInterest)}</td>
+              <td>{formatter.format(val.totalInterest)}</td>
+              <td>{formatter.format(val.investedCapital)}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
